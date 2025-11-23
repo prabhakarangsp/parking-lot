@@ -1,9 +1,44 @@
 package org.example.parking.spot;
 
-public abstract class ParkingSpot
+public class ParkingSpot
 {
-    public SpotType spot = SpotType.NONE;
-    public boolean isFree = Boolean.TRUE;
-    public int floorNo = 0;
-    public String spotNo = null;
+    private final String id;
+    private final SpotType type;
+    private boolean occupied;
+
+    public ParkingSpot(String id, SpotType type)
+    {
+        this.id = id;
+        this.type = type;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public SpotType getType()
+    {
+        return type;
+    }
+
+    public boolean isOccupied()
+    {
+        return occupied;
+    }
+
+    public void occupy()
+    {
+        this.occupied = true;
+    }
+
+    public void free()
+    {
+        this.occupied = false;
+    }
+
+    public boolean fitsVehicle(org.example.parking.vehicles.Vehicle vehicle)
+    {
+        return type.fitsVehicleType(vehicle.getVehicleType()) && !occupied;
+    }
 }

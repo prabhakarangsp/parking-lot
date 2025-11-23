@@ -41,7 +41,7 @@ public class ParkingSpotFinder
         for (ParkingFloor floor : getFloors())
         {
             List<ParkingSpot> spots = floor.getSpots().get(
-                    VehicleSpotType.getSpotTypeForVehicle(vehicleType.getTypeName()));
+                    SpotType.fromVehicleType(vehicleType));
             if (!spots.isEmpty())
             {
                 return Optional.ofNullable(spots.get(0));
